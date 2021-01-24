@@ -14,15 +14,22 @@ struct CityItemViewModel {
 
 protocol CitiesListViewModelProtocol {
     var citiesRepository: CitiesRepository { get }
+    var cities: [City] { get set }
     var isDataLoading: Observable<Bool> { get }
-    var citiesList: Observable<[CityItemViewModel]> { get }
+    var citiesViewModelList: Observable<[CityItemViewModel]> { get }
     func viewDidAppear()
 }
 
 class CitiesListViewModel: CitiesListViewModelProtocol {
     let citiesRepository: CitiesRepository = CitiesRepository()
     let isDataLoading: Observable<Bool> = Observable(value: false)
-    let citiesList: Observable<[CityItemViewModel]> = Observable(value: [])
+    let citiesViewModelList: Observable<[CityItemViewModel]> = Observable(value: [])
+    
+    var cities: [City] = [] {
+        didSet {
+            citiesViewModelList.value = cities.map { CityItemViewModel(title: $0.name) }
+        }
+    }
     
     func viewDidAppear() {
         getCities()
@@ -34,7 +41,7 @@ class CitiesListViewModel: CitiesListViewModelProtocol {
             guard let weakSelf = self else { return }
             switch result {
                 case .success(let cities):
-                    weakSelf.citiesList.value = cities.map { CityItemViewModel(title: $0.name) }
+                    weakSelf.cities = cities
                     weakSelf.isDataLoading.value = false
                 case .failure(_):
                     weakSelf.isDataLoading.value = false

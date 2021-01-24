@@ -15,7 +15,7 @@ protocol CitiesRouter {
 
 class CitiesAPIRouter: CitiesRouter {
     func getCitiesRespose(completion: @escaping (Result<Data, RepositoryError>) -> ()) {
-        let url = URL(string: "https://gist.githubusercontent.com/jackowski/66d1655194bbfcf9affb5206b6b334e5/raw/8c443d76213020a9ea0c1b01d35726ece25d207b/capital_cities.json")!
+        let url = URL(string: "https://gist.githubusercontent.com/jackowski/66d1655194bbfcf9affb5206b6b334e5/raw/bb5610d32c32dfd1fb88d7c97cc6dcc08d23d1a9/capital_cities.json")!
         return getDataFromUrl(url: url, completion: completion)
     }
     

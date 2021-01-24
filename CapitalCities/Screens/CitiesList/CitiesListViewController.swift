@@ -18,7 +18,7 @@ class CitiesListViewController: UIViewController {
     }
     
     fileprivate func bindViewModel() {
-        viewModel?.citiesList.bind(listner: { [unowned self] (_) in
+        viewModel?.citiesViewModelList.bind(listner: { [unowned self] (_) in
             self.tableView?.reloadData()
         })
         
@@ -84,12 +84,12 @@ extension CitiesListViewController: UITableViewDataSource {
             return 0
         }
         
-        return viewModel.citiesList.value.count
+        return viewModel.citiesViewModelList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
-        cell.textLabel?.text = viewModel!.citiesList.value[indexPath.row].title
+        cell.textLabel?.text = viewModel!.citiesViewModelList.value[indexPath.row].title
         return cell
     }
 }

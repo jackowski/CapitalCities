@@ -1,29 +1,36 @@
 [
   {
+    "city_id": "1",
     "name": "Warsaw",
     "image_url": ""
   },
   {
+    "city_id": "2",
     "name": "Berlin",
     "image_url": ""
   },
   {
+    "city_id": "3",
     "name": "Paris",
     "image_url": ""
   },
   {
+    "city_id": "4",
     "name": "London",
     "image_url": ""
   },
   {
+    "city_id": "5",
     "name": "Madrid",
     "image_url": ""
   },
   {
+    "city_id": "6",
     "name": "Rome",
     "image_url": ""
   },
   {
+    "city_id": "7",
     "name": "Amsterdam",
     "image_url": ""
   },

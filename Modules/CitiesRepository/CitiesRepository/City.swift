@@ -8,6 +8,7 @@
 import Foundation
 
 public struct City: Decodable {
+    public var cityId: String
     public var name: String
     public var imageUrl: String
 }

@@ -45,6 +45,7 @@ class CitiesRepositoryTests: XCTestCase {
         switch repositoryResult! {
         case .success(let cities):
             XCTAssert(cities.count == 7, "number of cities should be 6")
+            XCTAssert(cities[0].cityId == "1", "city id should be 1")
             XCTAssert(cities[0].name == "Warsaw", "city name should be Warsaw")
             XCTAssert(cities[0].imageUrl == "")
         case .failure(_):

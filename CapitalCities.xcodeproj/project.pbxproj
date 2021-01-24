@@ -166,8 +166,7 @@
 		952CC71425BDC6B800B12C7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				952CC71525BDC74C00B12C7A /* CitiesListViewController.swift */,
-				952CC76325BDE36600B12C7A /* CitiesListViewModel.swift */,
+				952CC77025BE0FC400B12C7A /* CitiesList */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -178,6 +177,15 @@
 				952CC76825BDE90A00B12C7A /* Observable.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		952CC77025BE0FC400B12C7A /* CitiesList */ = {
+			isa = PBXGroup;
+			children = (
+				952CC71525BDC74C00B12C7A /* CitiesListViewController.swift */,
+				952CC76325BDE36600B12C7A /* CitiesListViewModel.swift */,
+			);
+			path = CitiesList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
