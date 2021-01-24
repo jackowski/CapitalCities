@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RepositoryError: Error {
+public enum RepositoryError: Error {
     case apiError
     case serializationError
 }

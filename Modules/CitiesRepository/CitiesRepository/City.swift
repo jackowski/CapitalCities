@@ -8,14 +8,14 @@
 import Foundation
 
 public struct City: Decodable {
-    var name: String
-    var imageUrl: String
+    public var name: String
+    public var imageUrl: String
 }
 
 public struct Visitor: Decodable {
-    var name: String
+    public var name: String
 }
 
 public struct Rating: Decodable {
-    var rating: Float
+    public var rating: Float
 }
