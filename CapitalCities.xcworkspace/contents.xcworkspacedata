@@ -10,5 +10,8 @@
       <FileRef
          location = "group:Modules/CitiesRepository/CitiesRepository.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:Modules/CitiesRepository/FavouritesRepository/FavouritesRepository.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>
