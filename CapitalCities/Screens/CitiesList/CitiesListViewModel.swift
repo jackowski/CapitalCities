@@ -18,6 +18,7 @@ protocol CitiesListViewModelProtocol {
     var isDataLoading: Observable<Bool> { get }
     var citiesViewModelList: Observable<[CityItemViewModel]> { get }
     func viewDidAppear()
+    func detailsViewModel(index: Int) -> CityDetailsViewModelProtocol
 }
 
 class CitiesListViewModel: CitiesListViewModelProtocol {
@@ -47,5 +48,10 @@ class CitiesListViewModel: CitiesListViewModelProtocol {
                     weakSelf.isDataLoading.value = false
             }
         }
+    }
+    
+    func detailsViewModel(index: Int) -> CityDetailsViewModelProtocol {
+        let city = cities[index]
+        return CityDetailsViewModel(city: city)
     }
 }

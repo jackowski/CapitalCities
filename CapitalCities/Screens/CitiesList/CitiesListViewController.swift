@@ -8,9 +8,9 @@
 import UIKit
 
 class CitiesListViewController: UIViewController {
-    var tableView: UITableView?
-    let cellReuseIdentifier = "reuseIdentifier"
-    var activityIndicator: UIActivityIndicatorView?
+    fileprivate var tableView: UITableView?
+    fileprivate let cellReuseIdentifier = "reuseIdentifier"
+    fileprivate var activityIndicator: UIActivityIndicatorView?
     var viewModel: CitiesListViewModelProtocol? {
         didSet {
             bindViewModel()
@@ -44,6 +44,8 @@ class CitiesListViewController: UIViewController {
     }
 
     fileprivate func setUpView() {
+        self.view.backgroundColor = .white
+        
         setUpTableView()
         setUpActivityIndicator()
     }
@@ -95,5 +97,11 @@ extension CitiesListViewController: UITableViewDataSource {
 }
 
 extension CitiesListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cityDetailsViewController = CityDetailsViewController()
+        cityDetailsViewController.viewModel = viewModel!.detailsViewModel(index: indexPath.row)
+        self.navigationController?.pushViewController(cityDetailsViewController, animated: true)
+    }
 }
