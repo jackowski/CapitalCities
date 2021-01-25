@@ -7,13 +7,16 @@
 
 import Foundation
 import CitiesRepository
+import FavouritesRepository
 
 struct CityItemViewModel {
     var title: String
+    var isSavedToFavourites: Bool
 }
 
 protocol CitiesListViewModelProtocol {
     var citiesRepository: CitiesRepository { get }
+    var favouritesRepository: FavouritesRepository { get }
     var cities: [City] { get set }
     var isDataLoading: Observable<Bool> { get }
     var citiesViewModelList: Observable<[CityItemViewModel]> { get }
@@ -23,12 +26,20 @@ protocol CitiesListViewModelProtocol {
 
 class CitiesListViewModel: CitiesListViewModelProtocol {
     let citiesRepository: CitiesRepository = CitiesRepository()
+    let favouritesRepository: FavouritesRepository = FavouritesRepository()
     let isDataLoading: Observable<Bool> = Observable(value: false)
     let citiesViewModelList: Observable<[CityItemViewModel]> = Observable(value: [])
     
     var cities: [City] = [] {
         didSet {
-            citiesViewModelList.value = cities.map { CityItemViewModel(title: $0.name) }
+            updateCitiesViewModel()
+        }
+    }
+    
+    func updateCitiesViewModel() {
+        citiesViewModelList.value = cities.map {
+            CityItemViewModel(title: $0.name,
+                              isSavedToFavourites: favouritesRepository.getFavouritesIds().contains($0.cityId))
         }
     }
     
@@ -52,6 +63,12 @@ class CitiesListViewModel: CitiesListViewModelProtocol {
     
     func detailsViewModel(index: Int) -> CityDetailsViewModelProtocol {
         let city = cities[index]
-        return CityDetailsViewModel(city: city)
+        let isSavedToFavourites = citiesViewModelList.value[index].isSavedToFavourites
+        return CityDetailsViewModel(favouritesRepository: favouritesRepository,
+                                    city: city,
+                                    isSavedInFavourites: isSavedToFavourites,
+                                    didChangeSaveToFavourites: { [weak self] in
+                                        self?.updateCitiesViewModel()
+        })
     }
 }

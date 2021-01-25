@@ -7,15 +7,19 @@
 
 import Foundation
 
-class FavouritesRepository {
-    var userDefaults: UserDefaults
-    let favouritesKey = "favourites"
+public class FavouritesRepository {
+    fileprivate var userDefaults: UserDefaults
+    fileprivate let favouritesKey = "favourites"
     
-    var favouritesIds: [String]
+    fileprivate var favouritesIds: [String]
     
     init(userDefaults: UserDefaults = UserDefaults.standard) {
         self.userDefaults = userDefaults
         self.favouritesIds = userDefaults.object(forKey: favouritesKey) as? [String] ?? []
+    }
+    
+    public convenience init() {
+        self.init(userDefaults: UserDefaults.standard)
     }
     
     public func getFavouritesIds() -> [String] {
@@ -41,7 +45,7 @@ class FavouritesRepository {
         synchronizeFavouritesIds()
     }
     
-    func synchronizeFavouritesIds() {
+    fileprivate func synchronizeFavouritesIds() {
         userDefaults.set(favouritesIds, forKey: favouritesKey)
         userDefaults.synchronize()
     }

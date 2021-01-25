@@ -7,19 +7,25 @@
 
 import Foundation
 import CitiesRepository
+import FavouritesRepository
 
 protocol CityDetailsViewModelProtocol {
     var citiesRepository: CitiesRepository { get }
+    var favouritesRepository: FavouritesRepository { get }
     var isDataLoading: Observable<Bool> { get }
     var navigationTitle: String { get set }
     var city: City { get set }
     var ratingText: Observable<String> { get }
     var visitorsText: Observable<String> { get }
+    var favouriteButtonTitle: Observable<String> { get }
+    var didChangeSaveToFavourites: (() -> ()) { get }
     func viewDidAppear()
+    func didTapSaveToFavouritesButton()
 }
 
 class CityDetailsViewModel: CityDetailsViewModelProtocol {
     var citiesRepository: CitiesRepository = CitiesRepository()
+    var favouritesRepository: FavouritesRepository
     var isDataLoading: Observable<Bool> = Observable(value: false)
     var navigationTitle: String = ""
     var city: City
@@ -27,11 +33,36 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
     var visitors: [Visitor]?
     var ratingText: Observable<String> = Observable(value: "")
     var visitorsText: Observable<String> = Observable(value: "")
+    fileprivate var isSavedInFavourites: Bool {
+        didSet {
+            favouriteButtonTitle.value = isSavedInFavourites
+                ? removeFromFavouritesText
+                : savedToFavouritesText
+        }
+    }
+    var favouriteButtonTitle: Observable<String>
+    var didChangeSaveToFavourites: (() -> ())
     
-    init(city: City) {
+    fileprivate let savedToFavouritesText = "Save To Favourites"
+    fileprivate let removeFromFavouritesText = "Remove From Favourites"
+    
+    init(favouritesRepository: FavouritesRepository,
+         city: City,
+         isSavedInFavourites: Bool,
+         didChangeSaveToFavourites: @escaping (() -> ()))
+    {
+        self.favouritesRepository = favouritesRepository
         self.city = city
         navigationTitle = city.name
+        
+        self.isSavedInFavourites = isSavedInFavourites
+        favouriteButtonTitle = Observable(value: isSavedInFavourites
+                                            ? removeFromFavouritesText
+                                            : savedToFavouritesText)
+        self.didChangeSaveToFavourites = didChangeSaveToFavourites
     }
+    
+    
     
     func viewDidAppear() {
         getAdditionalData()
@@ -79,5 +110,15 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
                 weakSelf.ratingText.value = "rating: N/A"
             }
         }
+    }
+    
+    func didTapSaveToFavouritesButton() {
+        isSavedInFavourites.toggle()
+        if isSavedInFavourites {
+            favouritesRepository.addFavouriteId(favouriteId: city.cityId)
+        } else {
+            favouritesRepository.removeFavouriteId(favouriteId: city.cityId)
+        }
+        didChangeSaveToFavourites()
     }
 }

@@ -34,7 +34,11 @@ class CityDetailsViewController: UIViewController {
         })
         
         viewModel?.visitorsText.bind(listner: { [unowned self] (visitorsText) in
-            self.favouriteButton?.setTitle(visitorsText, for: .normal)
+            self.visitorsButton?.setTitle(visitorsText, for: .normal)
+        })
+        
+        viewModel?.favouriteButtonTitle.bind(listner: { [unowned self] (favouriteButtonTitle) in
+            self.favouriteButton?.setTitle(favouriteButtonTitle, for: .normal)
         })
     }
     
@@ -45,6 +49,7 @@ class CityDetailsViewController: UIViewController {
         setUpView()
         
         title = viewModel?.navigationTitle
+        favouriteButton?.setTitle(viewModel?.favouriteButtonTitle.value, for: .normal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,6 +106,6 @@ class CityDetailsViewController: UIViewController {
     }
     
     @objc func didTapFavouriteButton(_ sender: UIButton) {
-        
+        viewModel?.didTapSaveToFavouritesButton()
     }
 }
