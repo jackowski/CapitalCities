@@ -102,10 +102,15 @@ class CityDetailsViewController: UIViewController {
     }
     
     @objc func didTapVisitorsButton(_ sender: UIButton) {
+        let visitorsListViewModel = viewModel!.visitorsListViewModel()
+        let visitorsListViewController = VisitorsListViewController()
+        visitorsListViewController.viewModel = visitorsListViewModel
         
+        let visitorsListNavigationController = UINavigationController(rootViewController: visitorsListViewController)
+        present(visitorsListNavigationController, animated: true, completion: nil)
     }
     
     @objc func didTapFavouriteButton(_ sender: UIButton) {
-        viewModel?.didTapSaveToFavouritesButton()
+        viewModel!.didTapSaveToFavouritesButton()
     }
 }

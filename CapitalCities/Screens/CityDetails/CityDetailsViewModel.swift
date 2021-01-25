@@ -21,6 +21,7 @@ protocol CityDetailsViewModelProtocol {
     var didChangeSaveToFavourites: (() -> ()) { get }
     func viewDidAppear()
     func didTapSaveToFavouritesButton()
+    func visitorsListViewModel() -> VisitorsListViewModelProtocol
 }
 
 class CityDetailsViewModel: CityDetailsViewModelProtocol {
@@ -33,6 +34,9 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
     var visitors: [Visitor]?
     var ratingText: Observable<String> = Observable(value: "")
     var visitorsText: Observable<String> = Observable(value: "")
+    var favouriteButtonTitle: Observable<String>
+    var didChangeSaveToFavourites: (() -> ())
+    
     fileprivate var isSavedInFavourites: Bool {
         didSet {
             favouriteButtonTitle.value = isSavedInFavourites
@@ -40,8 +44,6 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
                 : savedToFavouritesText
         }
     }
-    var favouriteButtonTitle: Observable<String>
-    var didChangeSaveToFavourites: (() -> ())
     
     fileprivate let savedToFavouritesText = "Save To Favourites"
     fileprivate let removeFromFavouritesText = "Remove From Favourites"
@@ -49,8 +51,7 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
     init(favouritesRepository: FavouritesRepository,
          city: City,
          isSavedInFavourites: Bool,
-         didChangeSaveToFavourites: @escaping (() -> ()))
-    {
+         didChangeSaveToFavourites: @escaping (() -> ())) {
         self.favouritesRepository = favouritesRepository
         self.city = city
         navigationTitle = city.name
@@ -120,5 +121,9 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
             favouritesRepository.removeFavouriteId(favouriteId: city.cityId)
         }
         didChangeSaveToFavourites()
+    }
+    
+    func visitorsListViewModel() -> VisitorsListViewModelProtocol {
+        return VisitorsListViewModel(visitors: self.visitors ?? [])
     }
 }
