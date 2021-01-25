@@ -44,7 +44,7 @@ class VisitorsListViewController: UIViewController {
     
     fileprivate func setUpCloseButton() {
         let closeBarButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(didTapClose(sender:)))
-        navigationItem.leftBarButtonItem = closeBarButton
+        navigationItem.rightBarButtonItem = closeBarButton
     }
     
     @objc func didTapClose(sender: UIBarButtonItem) {
