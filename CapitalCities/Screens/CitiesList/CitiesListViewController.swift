@@ -59,7 +59,7 @@ class CitiesListViewController: UIViewController {
         tableView!.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         tableView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView!.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView!.register(CityTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView!.tableFooterView = UIView(frame: .zero)
         
         tableView!.delegate = self
@@ -90,14 +90,14 @@ extension CitiesListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! CityTableViewCell
         cell.selectionStyle = .none
         
         let cellViewModel: CityItemViewModel = viewModel!.citiesViewModelList.value[indexPath.row]
-        cell.textLabel?.text = cellViewModel.title
-        cell.accessoryView = cellViewModel.isSavedToFavourites ? UIImageView(image: UIImage(systemName: "star.fill")!) : nil
+        cell.titleLabel.text = cellViewModel.title
+        cell.favouritesImageView.image = cellViewModel.isSavedToFavourites ? UIImage(systemName: "star.fill")! : nil
         
-        cell.imageView?.loadImage(urlSting: cellViewModel.imageUrl, placeholderImage: UIImage(systemName: "photo")!)
+        cell.photoImageView.loadImage(urlSting: cellViewModel.imageUrl, placeholderImage: UIImage(systemName: "photo")!)
         
         return cell
     }

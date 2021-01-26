@@ -10,7 +10,9 @@ import UIKit
 
 extension UIImageView {
     func loadImage(urlSting: String, placeholderImage: UIImage) {
-        self.image = placeholderImage
+        if self.image == nil {
+            self.image = placeholderImage
+        }
         
         guard let url = URL(string: urlSting) else { return }
         

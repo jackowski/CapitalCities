@@ -25,6 +25,7 @@
 		952CC77E25BF58D500B12C7A /* VisitorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC77D25BF58D500B12C7A /* VisitorsListViewController.swift */; };
 		952CC78425BF5A6E00B12C7A /* VisitorsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC78325BF5A6E00B12C7A /* VisitorsListViewModel.swift */; };
 		952CC78825BF702200B12C7A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC78725BF702200B12C7A /* Extensions.swift */; };
+		952CC78C25BF988F00B12C7A /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC78B25BF988F00B12C7A /* CityTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		952CC77D25BF58D500B12C7A /* VisitorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsListViewController.swift; sourceTree = "<group>"; };
 		952CC78325BF5A6E00B12C7A /* VisitorsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsListViewModel.swift; sourceTree = "<group>"; };
 		952CC78725BF702200B12C7A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		952CC78B25BF988F00B12C7A /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 			children = (
 				952CC71525BDC74C00B12C7A /* CitiesListViewController.swift */,
 				952CC76325BDE36600B12C7A /* CitiesListViewModel.swift */,
+				952CC78B25BF988F00B12C7A /* CityTableViewCell.swift */,
 			);
 			path = CitiesList;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				952CC76925BDE90A00B12C7A /* Observable.swift in Sources */,
 				952CC78425BF5A6E00B12C7A /* VisitorsListViewModel.swift in Sources */,
 				950E814E25BC749B0066B28E /* SceneDelegate.swift in Sources */,
+				952CC78C25BF988F00B12C7A /* CityTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
