@@ -22,14 +22,20 @@ class CitiesRepositoryMock: CitiesRepositoryProtocol {
     }
     
     func getCities(completion: @escaping (Result<[City], RepositoryError>) -> ()) {
-        completion(self.getCitiesResult)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completion(self.getCitiesResult)
+        }
     }
     
     func getVisitors(cityId: String, completion: @escaping (Result<[Visitor], RepositoryError>) -> ()) {
-        completion(self.getVisitorsResult)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completion(self.getVisitorsResult)
+        }
     }
     
     func getRating(cityId: String, completion: @escaping (Result<Rating, RepositoryError>) -> ()) {
-        completion(self.getRatingResult)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completion(self.getRatingResult)
+        }
     }
 }
