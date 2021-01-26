@@ -9,6 +9,7 @@ import UIKit
 
 class CityDetailsViewController: UIViewController {
     fileprivate var stackView: UIStackView?
+    fileprivate var photoImageView: UIImageView?
     fileprivate var ratingLabel: UILabel?
     fileprivate var visitorsButton: UIButton?
     fileprivate var favouriteButton: UIButton?
@@ -47,9 +48,15 @@ class CityDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         setUpView()
-        
+        setInitialValues()
+    }
+    
+    fileprivate func setInitialValues() {
         title = viewModel?.navigationTitle
         favouriteButton?.setTitle(viewModel?.favouriteButtonTitle.value, for: .normal)
+        if let imageUrl = viewModel?.imageUrl {
+            photoImageView?.loadImage(urlSting: imageUrl, placeholderImage: UIImage(systemName: "photo")!)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,6 +73,12 @@ class CityDetailsViewController: UIViewController {
     }
     
     fileprivate func setUpContentStackView() {
+        photoImageView = UIImageView(frame: .zero)
+        photoImageView!.translatesAutoresizingMaskIntoConstraints = false
+        photoImageView!.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        photoImageView!.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        photoImageView!.contentMode = .scaleAspectFit
+        
         ratingLabel = UILabel(frame: .zero)
         ratingLabel!.textAlignment = .center
         ratingLabel!.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +94,7 @@ class CityDetailsViewController: UIViewController {
         favouriteButton!.heightAnchor.constraint(equalToConstant: 40).isActive = true
         favouriteButton!.addTarget(self, action: #selector(didTapFavouriteButton(_ :)), for: .touchUpInside)
         
-        stackView = UIStackView(arrangedSubviews: [ratingLabel!, visitorsButton!, favouriteButton!])
+        stackView = UIStackView(arrangedSubviews: [photoImageView!, ratingLabel!, visitorsButton!, favouriteButton!])
         stackView!.translatesAutoresizingMaskIntoConstraints = false
         stackView!.axis = .vertical
         stackView!.distribution = .equalSpacing

@@ -11,6 +11,7 @@ import FavouritesRepository
 
 struct CityItemViewModel {
     var title: String
+    var imageUrl: String
     var isSavedToFavourites: Bool
 }
 
@@ -39,6 +40,7 @@ class CitiesListViewModel: CitiesListViewModelProtocol {
     func updateCitiesViewModel() {
         citiesViewModelList.value = cities.map {
             CityItemViewModel(title: $0.name,
+                              imageUrl: $0.imageUrl,
                               isSavedToFavourites: favouritesRepository.getFavouritesIds().contains($0.cityId))
         }
     }

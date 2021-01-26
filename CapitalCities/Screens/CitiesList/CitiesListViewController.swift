@@ -91,9 +91,14 @@ extension CitiesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
+        cell.selectionStyle = .none
+        
         let cellViewModel: CityItemViewModel = viewModel!.citiesViewModelList.value[indexPath.row]
         cell.textLabel?.text = cellViewModel.title
         cell.accessoryView = cellViewModel.isSavedToFavourites ? UIImageView(image: UIImage(systemName: "star.fill")!) : nil
+        
+        cell.imageView?.loadImage(urlSting: cellViewModel.imageUrl, placeholderImage: UIImage(systemName: "photo")!)
+        
         return cell
     }
 }

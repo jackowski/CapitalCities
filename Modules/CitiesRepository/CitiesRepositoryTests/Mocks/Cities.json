@@ -2,36 +2,36 @@
   {
     "city_id": "1",
     "name": "Warsaw",
-    "image_url": ""
+    "image_url": "https://eu.ui-avatars.com/api/?name=Warsaw"
   },
   {
     "city_id": "2",
     "name": "Berlin",
-    "image_url": ""
+    "image_url": "https://eu.ui-avatars.com/api/?name=Berlin"
   },
   {
     "city_id": "3",
     "name": "Paris",
-    "image_url": ""
+    "image_url": "https://eu.ui-avatars.com/api/?name=Paris"
   },
   {
     "city_id": "4",
     "name": "London",
-    "image_url": ""
+    "image_url": "https://eu.ui-avatars.com/api/?name=London"
   },
   {
     "city_id": "5",
     "name": "Madrid",
-    "image_url": ""
+    "image_url": "https://eu.ui-avatars.com/api/?name=Madrid"
   },
   {
     "city_id": "6",
     "name": "Rome",
-    "image_url": ""
+    "image_url": "https://eu.ui-avatars.com/api/?name=Rome"
   },
   {
     "city_id": "7",
     "name": "Amsterdam",
-    "image_url": ""
+    "image_url": "https://eu.ui-avatars.com/api/?name=Amsterdam"
   },
 ]

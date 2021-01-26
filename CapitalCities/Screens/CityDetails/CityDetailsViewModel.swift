@@ -14,6 +14,7 @@ protocol CityDetailsViewModelProtocol {
     var favouritesRepository: FavouritesRepository { get }
     var isDataLoading: Observable<Bool> { get }
     var navigationTitle: String { get set }
+    var imageUrl: String { get set }
     var city: City { get set }
     var ratingText: Observable<String> { get }
     var visitorsText: Observable<String> { get }
@@ -28,7 +29,8 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
     var citiesRepository: CitiesRepository = CitiesRepository()
     var favouritesRepository: FavouritesRepository
     var isDataLoading: Observable<Bool> = Observable(value: false)
-    var navigationTitle: String = ""
+    var navigationTitle: String
+    var imageUrl: String
     var city: City
     var rating: Rating?
     var visitors: [Visitor]?
@@ -55,6 +57,7 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
         self.favouritesRepository = favouritesRepository
         self.city = city
         navigationTitle = city.name
+        imageUrl = city.imageUrl
         
         self.isSavedInFavourites = isSavedInFavourites
         favouriteButtonTitle = Observable(value: isSavedInFavourites
