@@ -16,8 +16,8 @@ struct CityItemViewModel {
 }
 
 protocol CitiesListViewModelProtocol {
-    var citiesRepository: CitiesRepository { get }
-    var favouritesRepository: FavouritesRepository { get }
+    var citiesRepository: CitiesRepositoryProtocol { get }
+    var favouritesRepository: FavouritesRepositoryProtocol { get }
     var cities: [City] { get set }
     var isDataLoading: Observable<Bool> { get }
     var errorMessage: Observable<String?> { get }
@@ -28,11 +28,17 @@ protocol CitiesListViewModelProtocol {
 }
 
 class CitiesListViewModel: CitiesListViewModelProtocol {
-    let citiesRepository: CitiesRepository = CitiesRepository()
-    let favouritesRepository: FavouritesRepository = FavouritesRepository()
+    var citiesRepository: CitiesRepositoryProtocol
+    var favouritesRepository: FavouritesRepositoryProtocol
     let isDataLoading: Observable<Bool> = Observable(value: false)
     var errorMessage: Observable<String?> = Observable(value: nil)
     let citiesViewModelList: Observable<[CityItemViewModel]> = Observable(value: [])
+    
+    init(citiesRepository: CitiesRepositoryProtocol,
+         favouritesRepository: FavouritesRepositoryProtocol) {
+        self.citiesRepository = citiesRepository
+        self.favouritesRepository = favouritesRepository
+    }
     
     var cities: [City] = [] {
         didSet {
@@ -73,7 +79,8 @@ class CitiesListViewModel: CitiesListViewModelProtocol {
     func detailsViewModel(index: Int) -> CityDetailsViewModelProtocol {
         let city = cities[index]
         let isSavedToFavourites = citiesViewModelList.value[index].isSavedToFavourites
-        return CityDetailsViewModel(favouritesRepository: favouritesRepository,
+        return CityDetailsViewModel(citiesRepository: self.citiesRepository,
+                                    favouritesRepository: self.favouritesRepository,
                                     city: city,
                                     isSavedInFavourites: isSavedToFavourites,
                                     didChangeSaveToFavourites: { [weak self] in

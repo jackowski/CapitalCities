@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CitiesRepository
+import FavouritesRepository
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let citiesListViewController = CitiesListViewController()
-            citiesListViewController.viewModel = CitiesListViewModel()
+            citiesListViewController.viewModel = CitiesListViewModel(
+                citiesRepository: CitiesRepository(),
+                favouritesRepository: FavouritesRepository())
             let rootViewController = UINavigationController(rootViewController: citiesListViewController)
             window.rootViewController = rootViewController
             self.window = window

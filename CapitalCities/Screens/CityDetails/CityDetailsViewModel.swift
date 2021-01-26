@@ -10,8 +10,8 @@ import CitiesRepository
 import FavouritesRepository
 
 protocol CityDetailsViewModelProtocol {
-    var citiesRepository: CitiesRepository { get }
-    var favouritesRepository: FavouritesRepository { get }
+    var citiesRepository: CitiesRepositoryProtocol { get }
+    var favouritesRepository: FavouritesRepositoryProtocol { get }
     var isDataLoading: Observable<Bool> { get }
     var navigationTitle: String { get set }
     var imageUrl: String { get set }
@@ -26,8 +26,8 @@ protocol CityDetailsViewModelProtocol {
 }
 
 class CityDetailsViewModel: CityDetailsViewModelProtocol {
-    var citiesRepository: CitiesRepository = CitiesRepository()
-    var favouritesRepository: FavouritesRepository
+    var citiesRepository: CitiesRepositoryProtocol
+    var favouritesRepository: FavouritesRepositoryProtocol
     var isDataLoading: Observable<Bool> = Observable(value: false)
     var navigationTitle: String
     var imageUrl: String
@@ -50,10 +50,12 @@ class CityDetailsViewModel: CityDetailsViewModelProtocol {
     fileprivate let savedToFavouritesText = "Save To Favourites"
     fileprivate let removeFromFavouritesText = "Remove From Favourites"
     
-    init(favouritesRepository: FavouritesRepository,
+    init(citiesRepository: CitiesRepositoryProtocol,
+         favouritesRepository: FavouritesRepositoryProtocol,
          city: City,
          isSavedInFavourites: Bool,
          didChangeSaveToFavourites: @escaping (() -> ())) {
+        self.citiesRepository = citiesRepository
         self.favouritesRepository = favouritesRepository
         self.city = city
         navigationTitle = city.name

@@ -7,7 +7,13 @@
 
 import Foundation
 
-public class CitiesRepository {
+public protocol CitiesRepositoryProtocol {
+    func getCities(completion: @escaping (Result<[City], RepositoryError>) -> ())
+    func getVisitors(cityId: String, completion: @escaping (Result<[Visitor], RepositoryError>) -> ())
+    func getRating(cityId: String, completion: @escaping (Result<Rating, RepositoryError>) -> ())
+}
+
+public class CitiesRepository: CitiesRepositoryProtocol {
     fileprivate var router: CitiesRouter
     
     init(router: CitiesRouter) {

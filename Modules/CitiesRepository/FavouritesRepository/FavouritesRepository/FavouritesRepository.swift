@@ -7,7 +7,13 @@
 
 import Foundation
 
-public class FavouritesRepository {
+public protocol FavouritesRepositoryProtocol {
+    func getFavouritesIds() -> [String]
+    func addFavouriteId(favouriteId: String)
+    func removeFavouriteId(favouriteId: String)
+}
+
+public class FavouritesRepository: FavouritesRepositoryProtocol {
     fileprivate var userDefaults: UserDefaults
     fileprivate let favouritesKey = "favourites"
     
