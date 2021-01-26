@@ -10,4 +10,5 @@ import Foundation
 public enum RepositoryError: Error {
     case apiError
     case serializationError
+    case noInternetConnection
 }

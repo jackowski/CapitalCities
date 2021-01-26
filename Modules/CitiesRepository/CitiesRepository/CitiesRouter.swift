@@ -14,6 +14,11 @@ protocol CitiesRouter {
 }
 
 class CitiesAPIRouter: CitiesRouter {
+    let reachablity: Reachability = Reachability()
+    init() {
+        reachablity.startMonitoring()
+    }
+    
     func getCitiesRespose(completion: @escaping (Result<Data, RepositoryError>) -> ()) {
         let url = URL(string: "https://gist.githubusercontent.com/jackowski/66d1655194bbfcf9affb5206b6b334e5/raw/3824ebbf26b622295845e4bf812f21111e9624ff/capital_cities.json")!
         return getDataFromUrl(url: url, completion: completion)
@@ -30,18 +35,27 @@ class CitiesAPIRouter: CitiesRouter {
     }
     
     func getDataFromUrl(url: URL, completion: @escaping (Result<Data, RepositoryError>) -> ()) {
+        guard !reachablity.unreachable else {
+            completion(.failure(.noInternetConnection))
+            return
+        }
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let response = response as? HTTPURLResponse,
-                (200...299).contains(response.statusCode),
-                let data = data else {
-                completion(.failure(.apiError))
-                return
+                  (200...299).contains(response.statusCode),
+                  let data = data else {
+                    completion(.failure(.apiError))
+                    return
             }
             
             completion(.success(data))
         }
         
         task.resume()
+    }
+    
+    deinit {
+        reachablity.stopMonitoring()
     }
     
 }

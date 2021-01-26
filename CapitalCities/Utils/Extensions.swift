@@ -29,6 +29,12 @@ extension UIImageView {
 
 extension RepositoryError {
     func message() -> String {
-        return "Internal Server Error"
+        switch self {
+        case .noInternetConnection:
+            return "No Internet Connection"
+        default:
+            return "Internal Server Error"
+        }
+        
     }
 }
