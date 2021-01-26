@@ -20,8 +20,10 @@ protocol CitiesListViewModelProtocol {
     var favouritesRepository: FavouritesRepository { get }
     var cities: [City] { get set }
     var isDataLoading: Observable<Bool> { get }
+    var errorMessage: Observable<String?> { get }
     var citiesViewModelList: Observable<[CityItemViewModel]> { get }
     func viewDidAppear()
+    func didTapRetry()
     func detailsViewModel(index: Int) -> CityDetailsViewModelProtocol
 }
 
@@ -29,6 +31,7 @@ class CitiesListViewModel: CitiesListViewModelProtocol {
     let citiesRepository: CitiesRepository = CitiesRepository()
     let favouritesRepository: FavouritesRepository = FavouritesRepository()
     let isDataLoading: Observable<Bool> = Observable(value: false)
+    var errorMessage: Observable<String?> = Observable(value: nil)
     let citiesViewModelList: Observable<[CityItemViewModel]> = Observable(value: [])
     
     var cities: [City] = [] {
@@ -51,16 +54,20 @@ class CitiesListViewModel: CitiesListViewModelProtocol {
     
     fileprivate func getCities() {
         isDataLoading.value = true
-        citiesRepository.getCities { [weak self] (result) in
-            guard let weakSelf = self else { return }
+        citiesRepository.getCities { [unowned self] (result) in
             switch result {
                 case .success(let cities):
-                    weakSelf.cities = cities
-                    weakSelf.isDataLoading.value = false
-                case .failure(_):
-                    weakSelf.isDataLoading.value = false
+                    self.cities = cities
+                    self.isDataLoading.value = false
+                case .failure(let error):
+                    self.isDataLoading.value = false
+                    self.errorMessage.value = error.message()
             }
         }
+    }
+    
+    func didTapRetry() {
+        getCities()
     }
     
     func detailsViewModel(index: Int) -> CityDetailsViewModelProtocol {

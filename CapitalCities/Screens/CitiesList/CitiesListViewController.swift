@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CitiesListViewController: UIViewController {
+class CitiesListViewController: UIViewController, ErrorDisplayable {
     fileprivate var tableView: UITableView?
     fileprivate let cellReuseIdentifier = "reuseIdentifier"
     fileprivate var activityIndicator: UIActivityIndicatorView?
@@ -24,9 +24,17 @@ class CitiesListViewController: UIViewController {
         
         viewModel?.isDataLoading.bind(listner: { [unowned self] (isLoading) in
             if isLoading {
-                activityIndicator?.startAnimating()
+                self.activityIndicator?.startAnimating()
             } else {
-                activityIndicator?.stopAnimating()
+                self.activityIndicator?.stopAnimating()
+            }
+        })
+        
+        viewModel?.errorMessage.bind(listner: { [unowned self] (message) in
+            if let message = message {
+                self.showAlert(message: message) {
+                    self.viewModel?.didTapRetry()
+                }
             }
         })
     }

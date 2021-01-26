@@ -26,6 +26,7 @@
 		952CC78425BF5A6E00B12C7A /* VisitorsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC78325BF5A6E00B12C7A /* VisitorsListViewModel.swift */; };
 		952CC78825BF702200B12C7A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC78725BF702200B12C7A /* Extensions.swift */; };
 		952CC78C25BF988F00B12C7A /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC78B25BF988F00B12C7A /* CityTableViewCell.swift */; };
+		952CC79025C0A80000B12C7A /* ErrorDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC78F25C0A80000B12C7A /* ErrorDisplayable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		952CC78325BF5A6E00B12C7A /* VisitorsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsListViewModel.swift; sourceTree = "<group>"; };
 		952CC78725BF702200B12C7A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		952CC78B25BF988F00B12C7A /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		952CC78F25C0A80000B12C7A /* ErrorDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDisplayable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			children = (
 				952CC76825BDE90A00B12C7A /* Observable.swift */,
 				952CC78725BF702200B12C7A /* Extensions.swift */,
+				952CC78F25C0A80000B12C7A /* ErrorDisplayable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				952CC77E25BF58D500B12C7A /* VisitorsListViewController.swift in Sources */,
 				952CC71625BDC74C00B12C7A /* CitiesListViewController.swift in Sources */,
 				950E814C25BC749B0066B28E /* AppDelegate.swift in Sources */,
+				952CC79025C0A80000B12C7A /* ErrorDisplayable.swift in Sources */,
 				952CC78825BF702200B12C7A /* Extensions.swift in Sources */,
 				952CC76425BDE36600B12C7A /* CitiesListViewModel.swift in Sources */,
 				952CC76925BDE90A00B12C7A /* Observable.swift in Sources */,

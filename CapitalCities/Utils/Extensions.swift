@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CitiesRepository
 
 extension UIImageView {
     func loadImage(urlSting: String, placeholderImage: UIImage) {
@@ -23,5 +24,11 @@ extension UIImageView {
                 }
             }
         }.resume()
+    }
+}
+
+extension RepositoryError {
+    func message() -> String {
+        return "Internal Server Error"
     }
 }
