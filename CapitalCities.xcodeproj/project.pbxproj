@@ -29,6 +29,7 @@
 		952CC7BA25C0CBBD00B12C7A /* CitiesListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC7B925C0CBBD00B12C7A /* CitiesListViewModelTests.swift */; };
 		952CC7BF25C0CF1100B12C7A /* CitiesRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC7BE25C0CF1100B12C7A /* CitiesRepositoryMock.swift */; };
 		952CC7C525C0CFFA00B12C7A /* FavouritesRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC7C425C0CFFA00B12C7A /* FavouritesRepositoryMock.swift */; };
+		952CC7CF25C0DC2C00B12C7A /* CityDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CC7CE25C0DC2C00B12C7A /* CityDetailsViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		952CC7B925C0CBBD00B12C7A /* CitiesListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewModelTests.swift; sourceTree = "<group>"; };
 		952CC7BE25C0CF1100B12C7A /* CitiesRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesRepositoryMock.swift; sourceTree = "<group>"; };
 		952CC7C425C0CFFA00B12C7A /* FavouritesRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesRepositoryMock.swift; sourceTree = "<group>"; };
+		952CC7CE25C0DC2C00B12C7A /* CityDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailsViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				952CC7BD25C0CEE400B12C7A /* Mocks */,
 				952CC7B925C0CBBD00B12C7A /* CitiesListViewModelTests.swift */,
+				952CC7CE25C0DC2C00B12C7A /* CityDetailsViewModelTests.swift */,
 				950E816425BC749E0066B28E /* Info.plist */,
 			);
 			path = CapitalCitiesTests;
@@ -389,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				952CC7CF25C0DC2C00B12C7A /* CityDetailsViewModelTests.swift in Sources */,
 				952CC7C525C0CFFA00B12C7A /* FavouritesRepositoryMock.swift in Sources */,
 				952CC7BF25C0CF1100B12C7A /* CitiesRepositoryMock.swift in Sources */,
 				952CC7BA25C0CBBD00B12C7A /* CitiesListViewModelTests.swift in Sources */,
